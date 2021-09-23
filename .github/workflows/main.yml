@@ -26,7 +26,7 @@ jobs:
         id: docker_meta
         uses: crazy-max/ghaction-docker-meta@v1
         with:
-          images: hughshin/git_action
+          images: hughshin/node
           tag-semver: |
             {{version}}
             {{major}}.{{minor}}
