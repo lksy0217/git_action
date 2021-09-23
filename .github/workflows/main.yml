@@ -51,8 +51,10 @@ jobs:
           labels: ${{ steps.docker_meta.outputs.labels }}
       -
         name: Download file from S3
-        env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        run: |
-          aws s3 cp s3://data.phenos/NCC/SN00017916_0001.dcm ./
+        uses: keithweaver/aws-s3-github-action@master
+        with:
+          command: cp
+          source: s3://data.phenos/NCC/SN00017916_0001.dcm
+          destination: ./SN00017916_0001.dcm
+          aws_access_key_id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws_secret_access_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
